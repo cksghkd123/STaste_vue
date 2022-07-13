@@ -40,12 +40,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .footer {
-  display: block;
+  width: 80%;
+  margin: 0 auto;
   font-size: 12px;
   color: #d9d9d9;
-  padding: 0 15px;
-  height: 300px;
   position: relative;
+  padding-top: 120px;
+  padding-bottom: 60px;
 
   .company-info strong {
     display: inline-block;

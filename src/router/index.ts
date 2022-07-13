@@ -21,6 +21,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "map",
     component: () =>
       import("@/views/MapView.vue"),
+  },
+  {
+    path: "/what-i-want",
+    name: "what-i-want",
+    component: () =>
+      import("@/views/WhatIWantView.vue"),
   }
 ];
 

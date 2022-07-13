@@ -1,18 +1,17 @@
 <template>
-  <aside class="PageTabs_wrap">
-    <nav class="PageTabs_container">
-      <span class="PageTabs_label">홈</span>
-      <span class="PageTabs_label">찜</span>
-      <span class="PageTabs_label">지도</span>
-      <span class="PageTabs_label">내정보</span>
-    </nav>
-  </aside>
+  <div class="wrapper">
+    <button>뭐먹지?</button>
+    <img src="@/assets/main_tongue.jpg" alt="your tongue" />
+  </div>
+  <PageTabs />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import PageTabs from "@/components/PageTabs.vue";
 
 export default defineComponent({
+  components: { PageTabs },
   setup() {
     return {};
   },
@@ -20,29 +19,31 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.PageTabs_wrap {
-  .PageTabs_container {
-    height: 100%;
-    width: 100%;
-    max-width: 76.8rem;
-    display: flex;
-    margin: 0 auto;
-  }
-  .PageTabs_label {
-    display: flex;
-    justify-content: center;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  min-height: 20px;
+  margin-top: 10px;
+}
 
-    width: 25%;
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-  background-color: aliceblue;
-  height: 80px;
-  padding: 0 20px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
+.go_recommand_button {
+  width: 50%;
+  background-color: coral;
+  border-radius: 5px;
+  border: 3px double black;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5em 0.5em;
+  margin: 20px 0;
+  line-height: 2rem;
+  text-align: center;
+}
+.go_recommand_button:hover {
+  cursor: pointer;
+  background-color: rgb(248, 71, 7);
 }
 </style>

@@ -21,10 +21,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#app {
-  position: relative;
-  height: auto;
-  min-height: 100%;
-  padding-bottom: 300px;
-}
 </style>
