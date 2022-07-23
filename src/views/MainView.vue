@@ -1,34 +1,39 @@
 <template>
   <div class="wrapper">
-    <button>뭐먹지?</button>
+    <button class="go_recommend_button">뭐먹지?</button>
     <img src="@/assets/main_tongue.jpg" alt="your tongue" />
+  </div>
+  <div>
+    <button @click="getArticles">아티클 가져오기!</button>
+    <p>{{ articles }}</p>
   </div>
   <PageTabs />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import PageTabs from "@/components/PageTabs.vue";
+import ARTICLE_API from "@/common/axios/article";
 
 export default defineComponent({
   components: { PageTabs },
   setup() {
-    return {};
+    const articles = ref([]);
+    const getArticles = async () => {
+      const { data } = await ARTICLE_API.getArticles();
+      console.log(data);
+      articles.value = data;
+    };
+    return {
+      getArticles,
+      articles,
+    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  min-height: 20px;
-  margin-top: 10px;
-}
-
-.go_recommand_button {
+.go_recommend_button {
   width: 50%;
   background-color: coral;
   border-radius: 5px;
@@ -42,7 +47,7 @@ export default defineComponent({
   line-height: 2rem;
   text-align: center;
 }
-.go_recommand_button:hover {
+.go_recommend_button:hover {
   cursor: pointer;
   background-color: rgb(248, 71, 7);
 }
