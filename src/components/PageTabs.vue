@@ -65,4 +65,8 @@ export default defineComponent({
     margin: 0 auto;
   }
 }
+a {
+  color: black;
+  text-decoration: none;
+}
 </style>
