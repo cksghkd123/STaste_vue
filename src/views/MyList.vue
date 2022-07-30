@@ -1,4 +1,4 @@
-<template>내정보</template>
+<template>찜목록</template>
 
 <script lang="ts">
 import { defineComponent } from "vue";

@@ -7,16 +7,13 @@
     <button @click="getArticles">아티클 가져오기!</button>
     <p>{{ articles }}</p>
   </div>
-  <PageTabs />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import PageTabs from "@/components/PageTabs.vue";
 import ARTICLE_API from "@/common/axios/article";
 
 export default defineComponent({
-  components: { PageTabs },
   setup() {
     const articles = ref([]);
     const getArticles = async () => {
