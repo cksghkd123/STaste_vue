@@ -11,14 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/mylist",
     name: "mylist",
     component: () =>
-      import("@/views/MyList.vue"),
+      import("@/views/MyListView.vue"),
   },
   {
     path: "/mypage",
     name: "mypage",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import("../views/MyPageView.vue"),
   },
@@ -33,12 +30,6 @@ const routes: Array<RouteRecordRaw> = [
     name: "what-i-want",
     component: () =>
       import("@/views/WhatIWantView.vue"),
-  },
-  {
-    path: "/articles",
-    name: "articles",
-    component: () =>
-      import("@/views/ArticleView.vue"),
   }
 ];
 

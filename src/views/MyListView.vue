@@ -15,6 +15,8 @@
   <div class="container">
     <div class="card" v-for="article in articles" :key="article">
       <h3>{{ article.title }}</h3>
+      <button @click="deleteArticle(article.id)">삭제</button>
+      {{ index }}
       <span class="underline"></span>
       <p>{{ article.content }}</p>
     </div>
@@ -27,6 +29,7 @@ import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   setup() {
+    const index = ref("");
     const articles = ref([]);
     const articleInput = ref({
       title: "",
@@ -39,6 +42,17 @@ export default defineComponent({
       try {
         const { data } = await ARTICLE_API.postArticle(articleInput.value);
         console.log(data);
+        getArticles();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const deleteArticle = async (index: number) => {
+      try {
+        const { data } = await ARTICLE_API.deleteArticle(index);
+        console.log(data);
+        console.log(index);
         getArticles();
       } catch (error) {
         console.log(error);
@@ -59,9 +73,11 @@ export default defineComponent({
     });
 
     return {
+      index,
       articleInput,
       articles,
       writeArticle,
+      deleteArticle,
       getArticles,
     };
   },
