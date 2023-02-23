@@ -8,8 +8,8 @@ const ARTICLE_API = {
     postArticle(article: Article) {
         return client.post('/article', article)
     },
-    deleteArticle(index: number) {
-        return client.delete('/article/' + index)
+    deleteArticle(articleId: number) {
+        return client.delete(`/article/${articleId}`)
     }
 }
 

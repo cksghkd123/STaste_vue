@@ -2,7 +2,7 @@
   <div class="staste-header">
     <div class="top-banner">
       <span class="name">STaste</span>
-      <button class="login-button">로그인</button>
+      <a href="/signin" class="login-button">로그인</a>
     </div>
   </div>
 </template>
@@ -52,5 +52,12 @@ export default defineComponent({
   font-size: 1.7rem;
   color: aliceblue;
   font-weight: 700;
+}
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
 }
 </style>

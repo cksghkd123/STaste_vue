@@ -1,29 +1,24 @@
 <template>
-  <div class="wrapper">
+  <div @click="goPage('recommend')" class="wrapper">
     <button class="go_recommend_button">뭐먹지?</button>
     <img src="@/assets/main_tongue.jpg" alt="your tongue" />
-  </div>
-  <div>
-    <button @click="getArticles">아티클 가져오기!</button>
-    <p>{{ articles }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import ARTICLE_API from "@/common/axios/article";
+import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   setup() {
-    const articles = ref([]);
-    const getArticles = async () => {
-      const { data } = await ARTICLE_API.getArticles();
-      console.log(data);
-      articles.value = data;
+    const router = useRouter();
+    const goPage = (pagename: string) => {
+      router.push({
+        name: pagename,
+      });
     };
     return {
-      getArticles,
-      articles,
+      goPage,
     };
   },
 });

@@ -36,6 +36,8 @@ export default defineComponent({
       content: "",
     });
 
+    
+
     // methods
 
     const writeArticle = async () => {
@@ -68,6 +70,9 @@ export default defineComponent({
         console.log(error);
       }
     };
+
+    
+
     onMounted(() => {
       getArticles();
     });

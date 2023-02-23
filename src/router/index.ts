@@ -2,6 +2,18 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/signIn",
+    name: "signIn",
+    component: () =>
+      import("@/views/SignInView.vue"),
+  },
+  {
+    path: "/signUp",
+    name: "signUp",
+    component: () =>
+      import("@/views/SignUpView.vue"),
+  },
+  {
     path: "/",
     name: "main",
     component: () =>
@@ -26,11 +38,11 @@ const routes: Array<RouteRecordRaw> = [
       import("@/views/MapView.vue"),
   },
   {
-    path: "/what-i-want",
-    name: "what-i-want",
+    path: "/recommend",
+    name: "recommend",
     component: () =>
-      import("@/views/WhatIWantView.vue"),
-  }
+      import("@/views/RecommendView.vue"),
+  },
 ];
 
 const router = createRouter({
@@ -39,4 +51,3 @@ const router = createRouter({
 });
 
 export default router;
-
