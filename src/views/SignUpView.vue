@@ -26,6 +26,7 @@
     <br />
     <button @click="signUp">회원가입</button>
   </form>
+  <button @click="temp">로그 찍어보기</button>
 </template>
 
 
@@ -45,8 +46,16 @@ export default defineComponent({
 
     const signUp = async () => {
       try {
-        const { data } = await MEMBER_API.postSignup(signUpInput.value);
+        const { data } = await MEMBER_API.postSignUp(signUpInput.value);
         console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const temp = async () => {
+      try {
+        console.log(signUpInput);
       } catch (error) {
         console.log(error);
       }
@@ -55,6 +64,7 @@ export default defineComponent({
     return {
       signUpInput,
       signUp,
+      temp,
     };
   },
 });

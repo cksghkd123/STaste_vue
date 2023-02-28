@@ -1,17 +1,14 @@
 import client from ".";
-import { Signup } from "@/common/types/interface";
+import { SignUp } from "@/common/types/interface";
 
 const MEMBER_API = {
-    getSignin() {
-        return client.get('/signin')
+    postSignUp(user: SignUp) {
+        return client.post('/signUp', user)
     },
-    getSignup() {
-        return client.get('/signup')
+    oauth2SignIn() {
+        return client.get('/oauth2/authorization/google')
     }
-    ,
-    postSignup(user: Signup) {
-        return client.post('/signup', user)
-    }
+
 }
 
 export default MEMBER_API

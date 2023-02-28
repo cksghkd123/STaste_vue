@@ -4,9 +4,9 @@ interface Article {
     id?: number
 }
 
-interface Signup {
+interface SignUp {
     username: string
     password: string
     email: string
 }
-export { Article, Signup }
+export { Article, SignUp }
