@@ -1,4 +1,4 @@
-interface Article {
+interface Review {
     title: string
     content: string
     id?: number
@@ -9,4 +9,4 @@ interface SignUp {
     password: string
     email: string
 }
-export { Article, SignUp }
+export { Review, SignUp }
