@@ -1,32 +1,36 @@
 <template>
-  로그인
-  <h1>회원가입 페이지</h1>
-  <h1>회원가입 페이지</h1>
-  <form>
-    <input
-      v-model="signUpInput.username"
-      type="text"
-      name="username"
-      placeholder="Username"
-    />
-    <br />
-    <input
-      v-model="signUpInput.password"
-      type="password"
-      name="password"
-      placeholder="Password"
-    />
-    <br />
-    <input
-      v-model="signUpInput.email"
-      type="email"
-      name="email"
-      placeholder="Email"
-    />
-    <br />
-    <button @click="signUp">회원가입</button>
-  </form>
-  <button @click="temp">로그 찍어보기</button>
+  <div class="signup-container">
+    <form>
+      <div class="form-group">
+        <label>Username</label>
+        <input
+          v-model="signUpInput.username"
+          type="text"
+          name="username"
+          placeholder="Username"
+        />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          v-model="signUpInput.password"
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          v-model="signUpInput.email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+      <button @click.prevent="signUp">회원가입</button>
+    </form>
+  </div>
 </template>
 
 
@@ -70,5 +74,49 @@ export default defineComponent({
 });
 </script>
 
+
 <style lang="scss" scoped>
+.signup-container {
+  border: 1px solid rgb(221, 38, 74);
+  padding: 70px;
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: rgb(221, 38, 74);
+  }
+
+  input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(221, 38, 74);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #fff;
+    color: rgb(221, 38, 74);
+  }
+}
 </style>

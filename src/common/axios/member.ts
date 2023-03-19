@@ -1,9 +1,9 @@
 import client from ".";
-import { SignUp } from "@/common/types/interface";
+import { SignIn, SignUp } from "@/common/types/interface";
 
 const MEMBER_API = {
-    signIn() {
-        return client.get('/signIn',)
+    postSignIn(user: SignIn) {
+        return client.post('/signIn', user)
     },
     postSignUp(user: SignUp) {
         return client.post('/signUp', user)

@@ -1,130 +1,143 @@
 <template>
-  <div>
-    <input v-model="articleInput.title" type="text" />
-    <textarea
-      v-model="articleInput.content"
-      placeholder="내용을 입력해주세요"
-      id=""
-      cols="30"
-      rows="10"
-    ></textarea>
-  </div>
-  <div class="button-box">
-    <button @click="writeArticle" class="button-write">글쓰기</button>
-  </div>
-  <div class="container">
-    <div class="card" v-for="article in articles" :key="article">
-      <h3>{{ article.title }}</h3>
-      <button @click="deleteArticle(article.id)">삭제</button>
-      {{ index }}
-      <span class="underline"></span>
-      <p>{{ article.content }}</p>
+  <div class="review-container">
+    <div class="input-box">
+      <input v-model="reviewInput.title" type="text" class="input-title" />
+      <textarea
+        v-model="reviewInput.content"
+        placeholder="내용을 입력해주세요"
+        class="input-content"
+        id=""
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+    <div class="button-box">
+      <button @click="writeReview" class="button-write">글쓰기</button>
+    </div>
+    <div class="container">
+      <div class="card" v-for="(review, index) in reviews" :key="index">
+        <h3>{{ review.title }}</h3>
+        <button @click="deleteReview(review.id)" class="button-delete">
+          삭제
+        </button>
+        <span class="underline"></span>
+        <p>{{ review.content }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import ARTICLE_API from "@/common/axios/article";
+import REVIEW_API from "@/common/axios/review";
 import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   setup() {
     const index = ref("");
-    const articles = ref([]);
-    const articleInput = ref({
+    const reviews = ref([]);
+    const reviewInput = ref({
       title: "",
       content: "",
     });
 
-    
-
     // methods
 
-    const writeArticle = async () => {
+    const writeReview = async () => {
       try {
-        const { data } = await ARTICLE_API.postArticle(articleInput.value);
-        console.log(data);
-        getArticles();
+        console.log("흠..");
+        const { data } = await REVIEW_API.postReview(reviewInput.value);
+        console.log("오잉..!!", data);
+        getReviews();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const deleteArticle = async (index: number) => {
+    const deleteReview = async (index: number) => {
       try {
-        const { data } = await ARTICLE_API.deleteArticle(index);
+        const { data } = await REVIEW_API.deleteReview(index);
         console.log(data);
         console.log(index);
-        getArticles();
+        getReviews();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const getArticles = async () => {
+    const getReviews = async () => {
       try {
-        const { data } = await ARTICLE_API.getArticles();
+        const { data } = await REVIEW_API.getReviews();
         console.log(data);
-        articles.value = data;
+        reviews.value = data;
       } catch (error) {
         console.log(error);
       }
     };
-
-    
 
     onMounted(() => {
-      getArticles();
+      getReviews();
     });
 
     return {
       index,
-      articleInput,
-      articles,
-      writeArticle,
-      deleteArticle,
-      getArticles,
+      reviewInput,
+      reviews,
+      writeReview,
+      deleteReview,
+      getReviews,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.card {
-  width: 320px;
-  height: 400px;
-  border: 1px solid black;
-  border-radius: 10px;
+.review-container {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  margin: 20px;
   align-items: center;
+  justify-content: center;
 }
-.underline {
-  background: black;
-  width: 100%;
-  height: 1px;
-}
-.button-box {
+.container {
+  max-width: 400px;
+  margin: 0 auto;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
+
+.input-box {
+  max-width: 400px;
+  margin-bottom: 50px;
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+  }
+}
+
 .button-write {
-  width: 110px;
-  height: 50px;
-  background: orange;
+  background-color: #00bcd4;
+  color: #fff;
   border: none;
-  border-radius: 25px;
-  color: white;
-  font-weight: 800;
-}
-.button-write:hover {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  background: rgba(255, 166, 0, 0.858);
 }
 </style>

@@ -9,4 +9,9 @@ interface SignUp {
     password: string
     email: string
 }
-export { Review, SignUp }
+
+interface SignIn {
+    username: string
+    password: string
+}
+export { Review, SignUp, SignIn }
