@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import MEMBER_API from "@/common/axios/member";
+import store from "@/store";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -44,7 +45,8 @@ export default defineComponent({
     const signIn = async () => {
       try {
         const { data } = await MEMBER_API.postSignIn(signInInput.value);
-        localStorage.setItem("jwt", data);
+        store.dispatch("saveToken", data);
+        store.commit("setUsername", signInInput.value.username);
         router.go(-1);
       } catch (error) {
         errorMsg.value = "아이디 또는 비밀번호가 일치하지 않습니다만..";

@@ -110,6 +110,10 @@ export default defineComponent({
 
 .input-box {
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 50px;
 
   input[type="text"] {
