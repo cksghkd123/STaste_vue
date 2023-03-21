@@ -2,25 +2,29 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    token: '',
-    username: '',
+    token: localStorage.getItem('X-AUTH-TOKEN') || null,
+    username: localStorage.getItem('username') || null,
   },
   mutations: {
     setToken(state, token) {
       state.token = token;
     },
-    resetUsername(state) {
-      state.username = "";
+    setUsername(state, username) {
+      state.username = username;
     }
   },
   actions: {
-    saveToken({ commit }, token) {
+    saveToken({ commit }, { token, username }) {
       localStorage.setItem('X-AUTH-TOKEN', token); // JWT 토큰을 localStorage에 저장
+      localStorage.setItem('username', username);
       commit('setToken', token);
+      commit('setUsername', username);
     },
     removeToken({ commit }) {
       localStorage.removeItem('X-AUTH-TOKEN'); // localStorage에서 JWT 토큰 삭제
+      localStorage.removeItem('username')
       commit('setToken', null);
+      commit('setUsername', null);
     }
   },
   getters: {

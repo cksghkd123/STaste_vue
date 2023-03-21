@@ -11,34 +11,32 @@
       </template>
     </div>
   </div>
-  <div @click="pp">dddcdddccd</div>
 </template>
 
 
 <script lang="ts">
 import router from "@/router";
-import { defineComponent, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const store = useStore();
 
-    let isLoggedIn = ref(store.getters.isLoggedIn);
-    const username = store.state.username;
+    // 로그인 상태와 사용자 이름 가져오기
+    const isLoggedIn = computed(() => store.getters.isLoggedIn);
+    const username = computed(() => store.state.username);
 
-    //method
+    // 디버깅을 위한 메서드
     const pp = () => {
-      console.log(isLoggedIn);
+      console.log(isLoggedIn.value);
       console.log(store.state.username);
       console.log(store.state.token);
     };
 
-    const logout = async () => {
+    // 로그아웃 메서드
+    const logout = () => {
       try {
         store.dispatch("removeToken");
-        store.commit("resetUsername", "");
-        console.log("제거완료..");
-        isLoggedIn = store.getters.isLoggedIn;
         router.push("/");
       } catch (error) {
         console.log(error);

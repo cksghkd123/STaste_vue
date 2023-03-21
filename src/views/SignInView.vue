@@ -45,9 +45,11 @@ export default defineComponent({
     const signIn = async () => {
       try {
         const { data } = await MEMBER_API.postSignIn(signInInput.value);
-        store.dispatch("saveToken", data);
-        store.commit("setUsername", signInInput.value.username);
-        router.go(-1);
+        store.dispatch("saveToken", {
+          token: data,
+          username: signInInput.value.username,
+        });
+        router.push("/");
       } catch (error) {
         errorMsg.value = "아이디 또는 비밀번호가 일치하지 않습니다만..";
         console.log(error);
