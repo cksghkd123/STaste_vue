@@ -13,7 +13,7 @@
         <img src="@/assets/pagetab_map.png" alt="지도" class="PageTab_img" />
         <span class="PageTab_name">지도</span>
       </div>
-      <a href="/mypage" class="PageTabs_label">
+      <a @click="goMyPage" class="PageTabs_label">
         <img src="@/assets/pagetab_me.png" alt="내정보" class="PageTab_img" />
         <span class="PageTab_name">내정보</span>
       </a>
@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+import store from "@/store";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
@@ -33,8 +34,17 @@ export default defineComponent({
         name: pagename,
       });
     };
+
+    const goMyPage = () => {
+      if (store.getters.isLoggedIn) {
+        goPage("mypage");
+      } else {
+        goPage("signIn");
+      }
+    };
     return {
       goPage,
+      goMyPage,
     };
   },
 });
