@@ -5,15 +5,15 @@
         <img src="@/assets/pagetab_home.png" alt="홈" class="PageTab_img" />
         <span class="PageTab_name">홈</span>
       </div>
-      <div @click="goPage('mylist')" class="PageTabs_label">
+      <div @click="goPageIfLoggedIn('mylist')" class="PageTabs_label">
         <img src="@/assets/pagetab_list.png" alt="찜" class="PageTab_img" />
         <span class="PageTab_name">찜</span>
       </div>
-      <div @click="goPage('map')" class="PageTabs_label">
+      <div @click="goPageIfLoggedIn('map')" class="PageTabs_label">
         <img src="@/assets/pagetab_map.png" alt="지도" class="PageTab_img" />
         <span class="PageTab_name">지도</span>
       </div>
-      <a @click="goMyPage" class="PageTabs_label">
+      <a @click="goPageIfLoggedIn('mypage')" class="PageTabs_label">
         <img src="@/assets/pagetab_me.png" alt="내정보" class="PageTab_img" />
         <span class="PageTab_name">내정보</span>
       </a>
@@ -35,16 +35,16 @@ export default defineComponent({
       });
     };
 
-    const goMyPage = () => {
+    const goPageIfLoggedIn = (page: string) => {
       if (store.getters.isLoggedIn) {
-        goPage("mypage");
+        goPage(page);
       } else {
         goPage("signIn");
       }
     };
     return {
       goPage,
-      goMyPage,
+      goPageIfLoggedIn,
     };
   },
 });

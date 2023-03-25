@@ -1,6 +1,7 @@
 interface Review {
-    title: string
-    content: string
+    username?: string
+    food: string
+    score: string
     id?: number
 }
 

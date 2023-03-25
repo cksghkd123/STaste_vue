@@ -1,14 +1,14 @@
 <template>
   <div class="review-container">
     <div class="input-box">
-      <input v-model="reviewInput.title" type="text" class="input-title" />
+      <input v-model="reviewInput.food" type="text" class="input-title" />
       <textarea
-        v-model="reviewInput.content"
+        v-model="reviewInput.score"
         placeholder="내용을 입력해주세요"
         class="input-content"
         id=""
         cols="30"
-        rows="10"
+        rows="5"
       ></textarea>
     </div>
     <div class="button-box">
@@ -17,7 +17,10 @@
     <div class="container">
       <div class="card" v-for="(review, index) in reviews" :key="index">
         <h3>{{ review.title }}</h3>
-        <button @click="deleteReview(review.id)" class="button-delete">
+        <button
+          @click="deleteReview(username, review.id)"
+          class="button-delete"
+        >
           삭제
         </button>
         <span class="underline"></span>
@@ -29,33 +32,36 @@
 
 <script lang="ts">
 import REVIEW_API from "@/common/axios/review";
+import store from "@/store";
 import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   setup() {
+    const username = store.state.username;
     const index = ref("");
     const reviews = ref([]);
     const reviewInput = ref({
-      title: "",
-      content: "",
+      username: "",
+      food: "",
+      score: "",
     });
 
     // methods
 
     const writeReview = async () => {
       try {
-        console.log("흠..");
+        reviewInput.value.username = username || "Anoymous";
         const { data } = await REVIEW_API.postReview(reviewInput.value);
-        console.log("오잉..!!", data);
+        console.log(data);
         getReviews();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const deleteReview = async (index: number) => {
+    const deleteReview = async (username: string, index: number) => {
       try {
-        const { data } = await REVIEW_API.deleteReview(index);
+        const { data } = await REVIEW_API.deleteReview(username, index);
         console.log(data);
         console.log(index);
         getReviews();
@@ -79,6 +85,7 @@ export default defineComponent({
     });
 
     return {
+      username,
       index,
       reviewInput,
       reviews,

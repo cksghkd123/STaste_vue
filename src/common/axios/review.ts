@@ -8,8 +8,8 @@ const Review_API = {
     postReview(review: Review) {
         return client.post('/review', review)
     },
-    deleteReview(reviewId: number) {
-        return client.delete(`/review/${reviewId}`)
+    deleteReview(username: string, reviewId: number) {
+        return client.delete(`/review/${username}/${reviewId}`)
     }
 }
 
