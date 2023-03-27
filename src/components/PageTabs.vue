@@ -9,7 +9,7 @@
         <img src="@/assets/pagetab_list.png" alt="찜" class="PageTab_img" />
         <span class="PageTab_name">찜</span>
       </div>
-      <div @click="goPageIfLoggedIn('map')" class="PageTabs_label">
+      <div @click="goPage('markets')" class="PageTabs_label">
         <img src="@/assets/pagetab_map.png" alt="지도" class="PageTab_img" />
         <span class="PageTab_name">지도</span>
       </div>

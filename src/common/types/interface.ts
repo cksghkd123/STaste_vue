@@ -15,4 +15,9 @@ interface SignIn {
     username: string
     password: string
 }
-export { Review, SignUp, SignIn }
+
+interface Food {
+    foodname: string
+    explanation: string
+}
+export { Review, SignUp, SignIn, Food }

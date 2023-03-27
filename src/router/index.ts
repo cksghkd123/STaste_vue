@@ -32,10 +32,17 @@ const routes: Array<RouteRecordRaw> = [
       import("../views/MyPageView.vue"),
   },
   {
-    path: "/map",
-    name: "map",
+    path: "/markets",
+    name: "markets",
     component: () =>
-      import("@/views/MapView.vue"),
+      import("@/views/MarketsView.vue"),
+  },
+  {
+    path: "/market/:marketId",
+    name: "MarketDetails",
+    component: () =>
+      import("@/views/MarketDetails.vue"),
+    props: true
   },
   {
     path: "/recommend",
@@ -44,6 +51,7 @@ const routes: Array<RouteRecordRaw> = [
       import("@/views/RecommendView.vue"),
   },
 ];
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
