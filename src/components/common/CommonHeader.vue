@@ -26,13 +26,6 @@ export default defineComponent({
     const isLoggedIn = computed(() => store.getters.isLoggedIn);
     const username = computed(() => store.state.username);
 
-    // 디버깅을 위한 메서드
-    const pp = () => {
-      console.log(isLoggedIn.value);
-      console.log(store.state.username);
-      console.log(store.state.token);
-    };
-
     // 로그아웃 메서드
     const logout = () => {
       try {
@@ -46,7 +39,6 @@ export default defineComponent({
       isLoggedIn,
       username,
       logout,
-      pp,
     };
   },
 });

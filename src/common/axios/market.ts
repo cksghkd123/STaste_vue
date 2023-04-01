@@ -2,11 +2,12 @@ import client from ".";
 
 const MARKET_API = {
     getMarkets() {
-        return client.get('/stores')
+        return client.get('/markets')
     },
-    getMarketFoods(marketId: number) {
-        return client.get(`/store/${marketId}/menu`)
+    getMarketDetails(marketId: number) {
+        return client.get(`/market/${marketId}/menu`)
     },
+
 
 }
 

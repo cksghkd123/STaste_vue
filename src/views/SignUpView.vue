@@ -37,6 +37,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import MEMBER_API from "@/common/axios/member";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   setup() {
@@ -46,12 +47,15 @@ export default defineComponent({
       email: "",
     });
 
+    const router = useRouter();
+
     // methods
 
     const signUp = async () => {
       try {
         const { data } = await MEMBER_API.postSignUp(signUpInput.value);
         console.log(data);
+        router.go(-1);
       } catch (error) {
         console.log(error);
       }

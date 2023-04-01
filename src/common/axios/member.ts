@@ -8,9 +8,8 @@ const MEMBER_API = {
     postSignUp(user: SignUp) {
         return client.post('/signUp', user)
     },
-    oauth2SignIn() {
-        return client.get('/oauth/signIn')
-    }
+
+
 
 }
 

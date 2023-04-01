@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/market/:marketId",
-    name: "MarketDetails",
+    name: "market-details",
     component: () =>
       import("@/views/MarketDetails.vue"),
     props: true
