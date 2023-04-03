@@ -8,7 +8,6 @@
       </div>
     </div>
   </div>
-  <button @click="check">dddd</button>
 </template>
 
 
@@ -37,17 +36,12 @@ export default defineComponent({
       }
     };
 
-    const check = () => {
-      console.log(menu.value);
-    };
-
     onMounted(getMenu);
 
     return {
       // eslint-disable-next-line vue/no-dupe-keys
       menu,
       marketName,
-      check,
     };
   },
 });
