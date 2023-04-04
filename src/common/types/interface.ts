@@ -20,4 +20,13 @@ interface Food {
     foodname: string
     explanation: string
 }
-export { Review, SignUp, SignIn, Food }
+interface Sticker {
+    id: number;
+    spicy_level: number;
+    salty_level: number;
+    sweet_level: number;
+    satisfy_level: number;
+}
+
+
+export { Review, SignUp, SignIn, Food, Sticker }

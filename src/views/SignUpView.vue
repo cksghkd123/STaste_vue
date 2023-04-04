@@ -55,6 +55,7 @@ export default defineComponent({
       try {
         const { data } = await MEMBER_API.postSignUp(signUpInput.value);
         console.log(data);
+        alert("가입되었습니다~~");
         router.go(-1);
       } catch (error) {
         console.log(error);

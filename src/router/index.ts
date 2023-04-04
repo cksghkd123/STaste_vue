@@ -50,6 +50,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import("@/views/RecommendView.vue"),
   },
+  {
+    path: "/write/review",
+    name: "write-review",
+    component: () =>
+      import("@/views/WriteReviewView.vue"),
+  }
 ];
 
 

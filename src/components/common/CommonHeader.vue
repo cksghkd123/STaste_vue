@@ -3,11 +3,11 @@
     <div class="top-banner">
       <span class="name">STaste</span>
       <template v-if="isLoggedIn">
-        <span> {{ username }}님 환영합니다! </span>
-        <button class="logout-button" @click="logout">로그아웃</button>
+        <span class="phrase"> {{ username }}님 환영합니다! </span>
+        <button class="log-button" @click="logout">로그아웃</button>
       </template>
       <template v-else>
-        <a href="/signin" class="login-button">로그인</a>
+        <a href="/signin" class="log-button">로그인</a>
       </template>
     </div>
   </div>
@@ -59,7 +59,7 @@ export default defineComponent({
   background-color: crimson;
   padding: 0 20px;
 }
-.login-button {
+.log-button {
   width: 100px;
   height: 36px;
   background: crimson;
@@ -70,7 +70,7 @@ export default defineComponent({
   font-size: 1rem;
   font-weight: 500;
 }
-.login-button:hover {
+.log-button:hover {
   cursor: pointer;
   background-color: rgb(221, 38, 74);
 }
@@ -86,5 +86,9 @@ a {
   justify-content: center;
   color: black;
   text-decoration: none;
+}
+.phrase {
+  color: aliceblue;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 </style>

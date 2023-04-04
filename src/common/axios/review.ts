@@ -1,16 +1,21 @@
 import client from ".";
-import { Review } from "@/common/types/interface"
+import { Sticker } from "@/common/types/interface"
 
-const Review_API = {
+const REVIEW_API = {
     getReviews() {
         return client.get('/reviews')
     },
-    postReview(review: Review) {
-        return client.post('/review', review)
+    postReview(username: string, foodId: number, stickerList: Sticker[]) {
+        const requestData = {
+            username: username,
+            foodId: foodId,
+            stickerList: stickerList
+        }
+        return client.post('/review', requestData)
     },
     deleteReview(username: string, reviewId: number) {
         return client.delete(`/review/${username}/${reviewId}`)
     }
 }
 
-export default Review_API
+export default REVIEW_API

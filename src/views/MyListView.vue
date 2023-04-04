@@ -48,17 +48,6 @@ export default defineComponent({
 
     // methods
 
-    const writeReview = async () => {
-      try {
-        reviewInput.value.username = username || "Anoymous";
-        const { data } = await REVIEW_API.postReview(reviewInput.value);
-        console.log(data);
-        getReviews();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     const deleteReview = async (username: string, index: number) => {
       try {
         const { data } = await REVIEW_API.deleteReview(username, index);
@@ -89,7 +78,6 @@ export default defineComponent({
       index,
       reviewInput,
       reviews,
-      writeReview,
       deleteReview,
       getReviews,
     };
