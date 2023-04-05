@@ -45,12 +45,6 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: "/recommend",
-    name: "recommend",
-    component: () =>
-      import("@/views/RecommendView.vue"),
-  },
-  {
     path: "/write/review",
     name: "write-review",
     component: () =>

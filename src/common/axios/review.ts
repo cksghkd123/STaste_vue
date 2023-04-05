@@ -5,6 +5,9 @@ const REVIEW_API = {
     getReviews() {
         return client.get('/reviews')
     },
+    getReviewsByUser(username: string) {
+        return client.get(`/review/user/${username}`)
+    },
     postReview(username: string, foodId: number, stickerList: Sticker[]) {
         const requestData = {
             username: username,

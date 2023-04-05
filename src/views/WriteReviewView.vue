@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import STICKER_API from "@/common/axios/sticker";
 import { useRoute } from "vue-router";
 import REVIEW_API from "@/common/axios/review";
