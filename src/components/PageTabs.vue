@@ -5,13 +5,13 @@
         <img src="@/assets/pagetab_home.png" alt="홈" class="PageTab_img" />
         <span class="PageTab_name">홈</span>
       </div>
-      <div @click="goPageIfLoggedIn('mylist')" class="PageTabs_label">
-        <img src="@/assets/pagetab_list.png" alt="찜" class="PageTab_img" />
-        <span class="PageTab_name">찜</span>
-      </div>
       <div @click="goPage('markets')" class="PageTabs_label">
-        <img src="@/assets/pagetab_map.png" alt="지도" class="PageTab_img" />
-        <span class="PageTab_name">지도</span>
+        <img src="@/assets/pagetab_map.png" alt="찾기" class="PageTab_img" />
+        <span class="PageTab_name">찾기</span>
+      </div>
+      <div @click="goPageIfLoggedIn('mylist')" class="PageTabs_label">
+        <img src="@/assets/pagetab_list.png" alt="내리뷰" class="PageTab_img" />
+        <span class="PageTab_name">내리뷰</span>
       </div>
       <a @click="goPageIfLoggedIn('mypage')" class="PageTabs_label">
         <img src="@/assets/pagetab_me.png" alt="내정보" class="PageTab_img" />

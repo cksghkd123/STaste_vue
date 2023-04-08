@@ -59,6 +59,7 @@ export default defineComponent({
         router.go(-1);
       } catch (error) {
         console.log(error);
+        alert("뭔가가 잘못된거 같은데..");
       }
     };
 

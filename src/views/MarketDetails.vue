@@ -6,16 +6,7 @@
         <img :src="require(`@/assets/foods/${food.id}.jpg`)" alt="Food Image" />
         <h3>{{ food.name }}</h3>
         <p>{{ food.explanation ? food.explanation : "" }}</p>
-        <button
-          @click="
-            $router.push({
-              name: 'write-review',
-              params: { foodId: Number(food.id) },
-            })
-          "
-        >
-          스티커 남기기
-        </button>
+        <button @click="goPageIfLoggedIn(food.id)">스티커 붙이기</button>
       </div>
     </div>
   </div>
@@ -24,14 +15,16 @@
 
 <script lang="ts">
 import MARKET_API from "@/common/axios/market";
+import store from "@/store";
 import { defineComponent, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   setup() {
     const route = useRoute();
     const marketName = ref("");
     const menu = ref([]);
+    const router = useRouter();
 
     //method
     const getMenu = async () => {
@@ -47,11 +40,23 @@ export default defineComponent({
       }
     };
 
+    const goPageIfLoggedIn = (foodId: number) => {
+      if (store.getters.isLoggedIn) {
+        router.push({
+          name: "write-review",
+          params: { foodId: Number(foodId) },
+        });
+      } else {
+        alert("로그인해주세요!");
+      }
+    };
+
     onMounted(getMenu);
 
     return {
       menu,
       marketName,
+      goPageIfLoggedIn,
     };
   },
 });
