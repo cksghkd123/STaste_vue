@@ -1,50 +1,30 @@
 <template>
-  <div class="review-container">
-    <div class="input-box">
-      <input v-model="reviewInput.food" type="text" class="input-title" />
-      <textarea
-        v-model="reviewInput.score"
-        placeholder="내용을 입력해주세요"
-        class="input-content"
-        id=""
-        cols="30"
-        rows="5"
-      ></textarea>
-    </div>
-    <div class="button-box">
-      <button @click="writeReview" class="button-write">글쓰기</button>
-    </div>
-    <div class="container">
-      <div class="card" v-for="(review, index) in reviews" :key="index">
-        <h3>{{ review.title }}</h3>
-        <button
-          @click="deleteReview(username, review.id)"
-          class="button-delete"
-        >
-          삭제
-        </button>
-        <span class="underline"></span>
-        <p>{{ review.content }}</p>
+  <div class="review-container" v-for="(review, index) in reviews" :key="index">
+    <div class="review-namebox">{{ review.foodName }}</div>
+    <div class="sticker-list">
+      <div
+        class="sticker-card"
+        v-for="(sticker, index) in review.stickerList"
+        :key="index"
+      >
+        <img
+          :src="require(`@/assets/stickers/${sticker.id}.jpg`)"
+          alt="Sticker"
+        />
       </div>
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import REVIEW_API from "@/common/axios/review";
 import store from "@/store";
-import { defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const username = store.state.username;
+    const username = computed(() => store.state.username);
     const index = ref("");
     const reviews = ref([]);
-    const reviewInput = ref({
-      username: "",
-      food: "",
-      score: "",
-    });
 
     // methods
 
@@ -53,30 +33,33 @@ export default defineComponent({
         const { data } = await REVIEW_API.deleteReview(username, index);
         console.log(data);
         console.log(index);
-        getReviews();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const getReviews = async () => {
+    const getReviews = async (username: string | null) => {
+      if (!username) {
+        console.error("Username is null.");
+        return;
+      }
       try {
-        const { data } = await REVIEW_API.getReviews();
-        console.log(data);
+        const { data } = await REVIEW_API.getReviewsByUser(username);
         reviews.value = data;
+        console.log(username);
+        console.log(reviews);
       } catch (error) {
         console.log(error);
       }
     };
 
     onMounted(() => {
-      getReviews();
+      getReviews(username.value);
     });
 
     return {
       username,
       index,
-      reviewInput,
       reviews,
       deleteReview,
       getReviews,
@@ -90,53 +73,43 @@ export default defineComponent({
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-}
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.input-box {
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 50px;
-
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-  }
-}
-
-.button-write {
-  background-color: #00bcd4;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  background-color: #f5f5f5;
+}
+
+.review-namebox {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sticker-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sticker-card {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 </style>

@@ -32,7 +32,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import STICKER_API from "@/common/axios/sticker";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import REVIEW_API from "@/common/axios/review";
 import { Sticker } from "@/common/types/interface";
 import store from "@/store";
@@ -76,9 +76,11 @@ export default defineComponent({
     const writeReview = async () => {
       try {
         const username = store.state.username;
+        const router = useRouter();
         if (username) {
           await REVIEW_API.postReview(username, foodId, inputs.value);
           alert("리뷰 완료! > <");
+          router.push("/");
         } else {
           alert("로그인을 안한건가...??ㄷㄷ");
         }

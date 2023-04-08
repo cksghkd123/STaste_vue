@@ -2,9 +2,6 @@ import client from ".";
 import { Sticker } from "@/common/types/interface"
 
 const REVIEW_API = {
-    getReviews() {
-        return client.get('/reviews')
-    },
     getReviewsByUser(username: string) {
         return client.get(`/review/user/${username}`)
     },
