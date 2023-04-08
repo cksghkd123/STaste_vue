@@ -31,6 +31,7 @@ export default defineComponent({
       try {
         store.dispatch("removeToken");
         router.push("/");
+        router.go(0);
       } catch (error) {
         console.log(error);
       }

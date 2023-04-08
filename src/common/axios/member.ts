@@ -8,7 +8,9 @@ const MEMBER_API = {
     postSignUp(user: SignUp) {
         return client.post('/signUp', user)
     },
-
+    getUserAbility(user: string) {
+        return client.get(`/userAbility/${user}`)
+    }
 
 
 }

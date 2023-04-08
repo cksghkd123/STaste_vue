@@ -1,4 +1,8 @@
 <template>
+  <div v-if="reviews.length === 0" class="no-reviews">
+    아직 리뷰를 하나도 달지 않았네! 어서 해보자
+  </div>
+
   <div class="review-container" v-for="(review, index) in reviews" :key="index">
     <div class="review-namebox">{{ review.foodName }}</div>
     <div class="sticker-list">
@@ -111,5 +115,12 @@ img {
   height: 50px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.no-reviews {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
 }
 </style>
